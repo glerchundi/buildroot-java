@@ -2,7 +2,7 @@ sudo: false
 language: bash
 env:
   global:
-    - BR_RELEASE=2015.08-rc1.rev2
+    - BR_RELEASE=2015.08-rc2.rev1
 addons:
   apt:
     packages:
@@ -15,14 +15,18 @@ addons:
     - bc
     - wget
 install:
-  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.install ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.install; fi
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.install.pre ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.install.pre; fi
   - bash -e $(dirname $(readlink -f ${TRAVIS_BUILD_DIR}/.travis.yml))/install
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.install.post ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.install.post; fi
 script:
-  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.script ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.script; fi
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.script.pre ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.script.pre; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/script
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.script.post ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.script.post; fi
 after_failure:
-  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.after_failure ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.after_failure; fi
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.after_failure.pre ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.after_failure.pre; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/after_failure
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.after_failure.post ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.after_failure.post; fi
 after_success:
-  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.after_success ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.after_success; fi
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.after_success.pre ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.after_success.pre; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/after_success
+  - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.after_success.post ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.after_success.post; fi
