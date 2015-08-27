@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# go home!
+cd ~
+
+# create custom dir for oraclejre-bin
+mkdir oraclejre-bin
+
+# download oracle jre
+wget --no-check-certificate \
+     -c \
+     --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+     -O oraclejre-bin/oraclejre-bin.tar.gz \
+     http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jre-8u60-linux-x64.tar.gz 
