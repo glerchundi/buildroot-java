@@ -2,7 +2,6 @@ sudo: false
 language: bash
 env:
   global:
-    - secure: "KFCalaAF+d55Z3pX22XXGuNkR7YTV70n2UZ+LED6v0xhkNQYSxSs0X0oiH9ZqvnxSoZdy6+sGaR6Oxn+s1xAwodnf10PR6rSqgIvSy9vftwPpdVXVaw8X7N6B1Zu6i6l2vNNn8TkebxBFpYcpwrsPnHVUYUNrhAc7f/AzNlNZD6R02gT13fUopvtNwemvvdlIFcavt0e2HJXcl+dSArQVlzRQJZMTIx4vxlbgJQhGsjtT4wKJTSEFUUr5SoJO4aWrKbafl0Vx2duzSRkNSYND1J4nwKw+ebsbZccCCst2PB2fXjhokiyUl9BhyBfzOJTr1gn3sy3IFYWQ6oMEIkqqXCAlT59Pnm8++FK1BK0MgoMiVb/+1FOtFpSZgURRJAjgOGPU0BWsaHNnXHxW5P4m8d0TwHBYw7oHuoBnvx9PXFVsM5rogF6QPNE/PJUfy4YTQisTyx/D9Bm7Qcf3cJ7+Q1EJX1PbgUL5NAMZrBIPAjx1eWtov4RihHMHC9prBIBwTCgXLqjPIIIqGIU5gQ8sTJAlAMWrPO3d4YPR4DwE7fnaf+Qhfm3ratMNGX1/NWwK7rVbrn7jJowhlpYrRoRTlp7FJwJF8tfltenu2yatzFwZx5CFehGu9hyUZqaX/Da9aNK2u1/uOTwzIt9mVA9VTZhXJcKBOqq7VtYD8vsQP8="
     - BR_RELEASE=2015.08-rc1.rev2
 addons:
   apt:
@@ -16,10 +15,14 @@ addons:
     - bc
     - wget
 install:
-  - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/install
+  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.install ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.install; fi
+  - bash -e $(dirname $(readlink -f ${TRAVIS_BUILD_DIR}/.travis.yml))/install
 script:
+  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.script ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.script; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/script
 after_failure:
+  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.after_failure ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.after_failure; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/after_failure
 after_success:
+  - if [ -f ${$TRAVIS_BUILD_DIR}/.travis.yml.after_success ]; then bash -e ${$TRAVIS_BUILD_DIR}/.travis.yml.after_success; fi
   - bash -e $(dirname $(readlink -f $TRAVIS_BUILD_DIR/.travis.yml))/after_success
