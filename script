@@ -13,6 +13,8 @@ for i in .defconfig.rendered.*; do
   make 2> ~/stderr.${i}.log | \tee ~/stdout.${i}.log | grep -i -e "^.*:" | grep -v "gcc" | grep -v "g++"
 done
 
+# create gpg sign for each file.
+
 # exit if TRAVIS_TAG is empty, no need to release anything
 if [ -z "${TRAVIS_TAG}" ]; then
   exit 0
