@@ -7,7 +7,7 @@ env:
     - BR_RELEASE=2015.08-rc2.rev1
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y build-essential libncurses5-devrsync cpio python unzip bc wget
+  - sudo apt-get install -y build-essential libncurses5-dev rsync cpio python unzip bc wget
 install:
   - if [ -f ${TRAVIS_BUILD_DIR}/.travis.yml.install.pre ]; then bash -e ${TRAVIS_BUILD_DIR}/.travis.yml.install.pre; fi
   - bash -e $(dirname $(readlink -f ${TRAVIS_BUILD_DIR}/.travis.yml))/install
