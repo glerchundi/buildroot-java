@@ -7,7 +7,7 @@ cd ~
 # create Dockerfile
 cat > ./Dockerfile <<EOL
 FROM scratch
-MAITAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
+MAINTAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
 ADD ./buildroot/output/images/rootfs.tar /
 EOL
 
