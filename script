@@ -14,19 +14,3 @@ for i in .defconfig.rendered.*; do
 done
 
 # create gpg sign for each file.
-
-# exit if TRAVIS_TAG is empty, no need to release anything
-if [ -z "${TRAVIS_TAG}" ]; then
-  exit 0
-fi
-
-# get repo name & version
-REPONAME=$(echo ${TRAVIS_REPO_SLUG} | cut -d"/" -f2)
-VERSION="${TRAVIS_TAG}"
-
-# rename files
-outpath=output/images
-for i in $outpath/rootfs*; do
-  bn=$(basename ${i})
-  mv ${i} ${outpath}/${REPONAME}-${VERSION}-${bn}
-done
