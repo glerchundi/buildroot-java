@@ -8,7 +8,7 @@ cd ~
 cat > ./Dockerfile <<EOL
 FROM scratch
 MAINTAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
-ENV PATH ${PATH}:/opt/oraclejre/bin
+ENV PATH /bin:/sbin:/usr/bin:/usr/sbin:/opt/oraclejre/bin
 ENV JAVA_HOME /opt/oraclejre
 ADD ./buildroot/output/images/rootfs.tar /
 EOL
