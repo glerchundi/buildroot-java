@@ -20,5 +20,5 @@ EOL
 
 # build & push
 docker login -e="." -u="${QUAY_USERNAME}" -p="${QUAY_PASSWORD}" quay.io
-docker build -t quay.io/glerchundi/buildroot-java:${TRAVIS_TAG} .
-docker push quay.io/glerchundi/buildroot-java:${TRAVIS_TAG}
+docker build -t quay.io/saltosystems/java:${TRAVIS_TAG} .
+docker push quay.io/saltosystems/java:${TRAVIS_TAG}
