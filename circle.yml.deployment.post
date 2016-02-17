@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+# exit if CIRCLE_TAG is empty, no need to release anything
+if [ -z "${CIRCLE_TAG}" ]; then
+  exit 0
+fi
+
+# go home!
+mkdir -p ~/image
+cd ~/image
+
+# copy rootfs
+cp ~/buildroot/output/images/rootfs.tar rootfs.tar
+
+# create Dockerfile
+cat > Dockerfile <<EOL
+MAINTAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/oraclejre/bin
+ENV JAVA_HOME /opt/oraclejre
+ADD ./rootfs.tar /
+EOL
+
+docker login -e="." -u="${QUAY_USERNAME}" -p="${QUAY_PASSWORD}" quay.io
+docker build -t quay.io/saltosystems/java:${CIRCLE_TAG} .
+docker push quay.io/saltosystems/java:${CIRCLE_TAG}

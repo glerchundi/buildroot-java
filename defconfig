@@ -18,8 +18,14 @@ BR2_TOOLCHAIN_EXTERNAL_INET_IPV6=y
 BR2_TOOLCHAIN_EXTERNAL_WCHAR=y
 BR2_TOOLCHAIN_EXTERNAL_CXX=y
 
-# iptables & no init
+# 
+# additional utilities
+#  - iptables: just in case
+#  - openssl: because it's useful to access TLS backed endpoint inside container (ex. using wget)
+#  - disable init
+#
 BR2_PACKAGE_IPTABLES=y
+BR2_PACKAGE_OPENSSL=y
 BR2_INIT_NONE=y
 
 # output formats
@@ -36,3 +42,6 @@ BR2_TARGET_GENERIC_ISSUE="java"
 #
 BR2_PACKAGE_ORACLEJRE_BIN=y
 BR2_PACKAGE_CA_CERTIFICATES=y
+# additional rootfs customizations
+BR2_ROOTFS_USERS_TABLES="$(HOME)/users_table.txt"
+BR2_ROOTFS_POST_BUILD_SCRIPT="$(HOME)/postbuild.sh"
