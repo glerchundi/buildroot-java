@@ -20,7 +20,7 @@ dependencies:
 
 deployment:
   release:
-    tag: /v[0-9]+(\.[0-9]+)*/
+    tag: /v.*/
     commands:
       - if [ -f ${HOME}/${CIRCLE_PROJECT_REPONAME}/circle.yml.deployment.pre ]; then bash -e ${HOME}/${CIRCLE_PROJECT_REPONAME}/circle.yml.deployment.pre; fi
       - wget https://raw.githubusercontent.com/saltosystems/buildroot-circleci/v${BR_CIRCLECI_RELEASE}/circle.yml.deployment -O - | bash -e
