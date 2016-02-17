@@ -15,6 +15,7 @@ cp ~/buildroot/output/images/rootfs.tar rootfs.tar
 
 # create Dockerfile
 cat > Dockerfile <<EOL
+FROM scratch
 MAINTAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/oraclejre/bin
 ENV JAVA_HOME /opt/oraclejre
