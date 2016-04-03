@@ -9,7 +9,7 @@ wget --no-check-certificate \
      -c \
      --header "Cookie: oraclelicense=accept-securebackup-cookie" \
      -O ${HOME}/oraclejre-bin/oraclejre-bin.tar.gz \
-     http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jre-8u74-linux-x64.tar.gz
+     http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jre-8u77-linux-x64.tar.gz
      
 # copy additional files
 cp ${HOME}/${CIRCLE_PROJECT_REPONAME}//users_table.txt ~/users_table.txt
