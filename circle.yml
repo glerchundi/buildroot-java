@@ -1,7 +1,7 @@
 machine:
   environment:
     CT_RELEASE: 1.22.0.0
-    BR_RELEASE: 2016.02-rev1
+    BR_RELEASE: 2016.02-rev2
     BR_CIRCLECI_RELEASE: 0.1.0-beta001
   services:
     - docker
